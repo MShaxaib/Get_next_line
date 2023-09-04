@@ -6,7 +6,7 @@
 /*   By: zaibi <zaibi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 16:36:45 by mshazaib          #+#    #+#             */
-/*   Updated: 2023/09/04 18:41:37 by zaibi            ###   ########.fr       */
+/*   Updated: 2023/09/04 21:06:19 by zaibi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,6 @@ void	cleanlists(t_list **list, t_list *clean_node, char *buf)
 	{
 		free(buf);
 		free(clean_node);
+		free(*list);
 	}
 }

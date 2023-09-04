@@ -6,7 +6,7 @@
 /*   By: zaibi <zaibi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 14:28:52 by mshazaib          #+#    #+#             */
-/*   Updated: 2023/09/04 18:28:42 by zaibi            ###   ########.fr       */
+/*   Updated: 2023/09/04 20:48:31 by zaibi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 1000000
 # endif
 
 typedef struct s_list
@@ -36,6 +36,6 @@ t_list				*find_last_node(t_list *list);
 int					found_newline(t_list *list);
 void				cleanlists(t_list **list, t_list *clean_node, char *buf);
 void				copy_str(t_list *list, char *str);
-char				*get_line(t_list *list);
+char				*get_lines(t_list *list);
 
 #endif
