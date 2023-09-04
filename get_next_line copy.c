@@ -6,12 +6,13 @@
 /*   By: zaibi <zaibi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 20:29:00 by mshazaib          #+#    #+#             */
-/*   Updated: 2023/09/04 18:42:48 by zaibi            ###   ########.fr       */
+/*   Updated: 2023/09/04 18:41:45 by zaibi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+// takes cars of the chars that were not used in the prevous call
 void	polish_list(t_list **list)
 {
 	t_list	*last_node;
@@ -44,10 +45,13 @@ char	*get_line(t_list *list)
 
 	if (list == NULL)
 		return (NULL);
+	// count chars
 	str_len = len_to_newline(list);
+	// malloc size of str_len + 1
 	next_str = malloc(str_len + 1);
 	if (next_str == NULL)
 		return (NULL);
+	// cpy the string into the buffer and return it
 	copy_str(list, next_str);
 	return (next_str);
 }
@@ -61,6 +65,7 @@ void	append(t_list **list, char *buf)
 	new_node = malloc(sizeof(t_list));
 	if (new_node == NULL)
 		return ;
+	// if list is empty
 	if (last_node == NULL)
 		*list = new_node;
 	else
@@ -74,6 +79,7 @@ void	create_list(t_list **list, int fd)
 	int		char_read;
 	char	*buff;
 
+	// scan line if \n present
 	while (!found_newline(*list))
 	{
 		buff = malloc(BUFFER_SIZE + 1);
@@ -86,6 +92,7 @@ void	create_list(t_list **list, int fd)
 			return ;
 		}
 		buff[char_read] = '\0';
+		// append the node
 		append(list, buff);
 	}
 }
@@ -95,13 +102,17 @@ char	*get_next_line(int fd)
 	static t_list	*list = NULL;
 	char			*next_line;
 
+	// list = NULL;
+	// fd os +ve | read gives -1 if some shit happen
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
 	{
 		return (NULL);
 	}
+	// create list
 	create_list(&list, fd);
 	if (list == NULL)
 		return (NULL);
+	// fetch the line from list
 	next_line = get_line(list);
 	polish_list(&list);
 	return (next_line);
