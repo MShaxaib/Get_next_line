@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zaibi <zaibi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mshazaib <mshazaib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 14:28:52 by mshazaib          #+#    #+#             */
-/*   Updated: 2023/09/04 20:48:31 by zaibi            ###   ########.fr       */
+/*   Updated: 2023/09/05 19:24:47 by mshazaib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000000
+# define BUFFER_SIZE 1000000
 # endif
 
 typedef struct s_list
