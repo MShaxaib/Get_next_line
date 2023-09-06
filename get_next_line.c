@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mshazaib <mshazaib@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zaibi <zaibi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 20:29:00 by mshazaib          #+#    #+#             */
-/*   Updated: 2023/09/05 19:22:30 by mshazaib         ###   ########.fr       */
+/*   Updated: 2023/09/06 21:34:01 by zaibi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,10 @@ char	*get_next_line(int fd)
 {
 	static t_list	*list = NULL;
 	char			*next_line;
+	int read_result; 
+	read_result = read(fd, &next_line, 0);
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read_result < 0)
 	{
 		list = NULL;
 		return (NULL);
@@ -108,17 +110,17 @@ char	*get_next_line(int fd)
 	polish_list(&list);
 	return (next_line);
 }
-// int main()
-// {
-// 	int fd;
-// 	char *lines;
-// 	int line = 1;
+int main()
+{
+	int fd;
+	char *lines;
+	int line = 1;
 
-// 	fd = open("Hellotest.txt", O_RDONLY);
+	fd = open("Hellotest.txt", O_RDONLY);
 
-// 	while((lines = get_next_line(fd)))
-// 	{
-// 		printf("%d --> %s\n",line++, lines);
-// 		free(lines);
-// 	}
-// }
+	while((lines = get_next_line(fd)))
+	{
+		printf("%d --> %s\n",line++, lines);
+		free(lines);
+	}
+}
