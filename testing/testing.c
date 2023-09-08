@@ -1,16 +1,114 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mshazaib <mshazaib@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/10 20:29:00 by mshazaib          #+#    #+#             */
-/*   Updated: 2023/09/08 20:10:38 by mshazaib         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+void	copy_str(t_list *list, char *str)
+{
+	int	i;
+	int	k;
 
-#include "get_next_line.h"
+	if (list == NULL)
+		return ;
+	k = 0;
+	while (list)
+	{
+		i = 0;
+		while (list->str_buff[i])
+		{
+			if (list->str_buff[i] == '\n')
+			{
+				str[k++] = '\n';
+				str[k] = '\0';
+				return ;
+			}
+			str[k++] = list->str_buff[i++];
+		}
+		list = list->next;
+	}
+	str[k] = '\0';
+}
+// counts the len of chars until it reaches new line
+
+int	len_to_newline(t_list *list)
+{
+	int	i;
+	int	len;
+
+	if (list == NULL)
+		return (0);
+	len = 0;
+	while (list)
+	{
+		i = 0;
+		while (list->str_buff[i])
+		{
+			if (list->str_buff[i] == '\n')
+			{
+				++len;
+				return (len);
+			}
+			++i;
+			++len;
+		}
+		list = list->next;
+	}
+	return (len);
+}
+
+t_list	*find_last_node(t_list *list)
+{
+	if (list == NULL)
+		return (NULL);
+	while (list->next)
+		list = list->next;
+	return (list);
+}
+// just checks if found new line
+
+int	found_newline(t_list *list)
+{
+	int	i;
+
+	if (NULL == list)
+		return (0);
+	while (list)
+	{
+		i = 0;
+		while (list->str_buff[i] && i < BUFFER_SIZE)
+		{
+			if (list->str_buff[i] == '\n')
+				return (1);
+			++i;
+		}
+		list = list->next;
+	}
+	return (0);
+}
+// deallocate the lists for the next call
+
+void	cleanlists(t_list **list, t_list *clean_node, char *buf)
+{
+	t_list	*tmp;
+
+	if (NULL == *list)
+		return ;
+	while (*list)
+	{
+		tmp = (*list)->next;
+		free((*list)->str_buff);
+		free(*list);
+		*list = tmp;
+	}
+	*list = NULL;
+	if (clean_node)
+	{
+		if (clean_node->str_buff[0])
+			*list = clean_node;
+		else
+		{
+			free(clean_node);
+			free(buf);
+		}
+	}
+	else
+		free(buf);
+}
 
 void	polish_list(t_list **list)
 {
@@ -113,17 +211,3 @@ char	*get_next_line(int fd)
 	polish_list(&list);
 	return (next_line);
 }
-// int main()
-// {
-// 	int fd;
-// 	char *lines;
-// 	int line = 1;
-
-// 	fd = open("Hellotest.txt", O_RDONLY);
-
-// 	while((lines = get_next_line(fd)))
-// 	{
-// 		printf("%d --> %s\n",line++, lines);
-// 		free(lines);
-// 	}
-// }
