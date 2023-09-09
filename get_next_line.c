@@ -6,7 +6,7 @@
 /*   By: mshazaib <mshazaib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 20:29:00 by mshazaib          #+#    #+#             */
-/*   Updated: 2023/09/08 21:17:03 by mshazaib         ###   ########.fr       */
+/*   Updated: 2023/09/09 18:15:12 by mshazaib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	polish_list(t_list **list)
 	buf[k] = '\0';
 	clean_node->str_buff = buf;
 	clean_node->next = NULL;
-	cleanlists(list,clean_node,buf);
+	cleanlists (list, clean_node, buf);
 }
 
 char	*get_lines(t_list *list)
@@ -94,14 +94,14 @@ char	*get_next_line(int fd)
 {
 	static t_list	*list = NULL;
 	char			*next_line;
-	int read_result; 
-	read_result = read(fd, &next_line, 0);
+	int				read_result;
 
+	read_result = read(fd, &next_line, 0);
 	if (fd < 0 || BUFFER_SIZE <= 0)
 	{
 		return (NULL);
 	}
-	if(read_result < 0)
+	if (read_result < 0)
 	{
 		list = NULL;
 		return (NULL);

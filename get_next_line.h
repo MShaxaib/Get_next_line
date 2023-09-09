@@ -6,7 +6,7 @@
 /*   By: mshazaib <mshazaib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 14:28:52 by mshazaib          #+#    #+#             */
-/*   Updated: 2023/09/07 16:31:50 by mshazaib         ###   ########.fr       */
+/*   Updated: 2023/09/09 18:15:37 by mshazaib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1000000
+#  define BUFFER_SIZE 1000000
 # endif
 
 typedef struct s_list

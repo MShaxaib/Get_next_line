@@ -6,13 +6,12 @@
 /*   By: mshazaib <mshazaib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 16:36:45 by mshazaib          #+#    #+#             */
-/*   Updated: 2023/09/08 21:18:24 by mshazaib         ###   ########.fr       */
+/*   Updated: 2023/09/09 18:13:55 by mshazaib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-// copy the chars into the list
 void	copy_str(t_list *list, char *str)
 {
 	int	i;
@@ -38,7 +37,6 @@ void	copy_str(t_list *list, char *str)
 	}
 	str[k] = '\0';
 }
-// counts the len of chars until it reaches new line
 
 int	len_to_newline(t_list *list)
 {
@@ -74,7 +72,6 @@ t_list	*find_last_node(t_list *list)
 		list = list->next;
 	return (list);
 }
-// just checks if found new line
 
 int	found_newline(t_list *list)
 {
@@ -95,7 +92,6 @@ int	found_newline(t_list *list)
 	}
 	return (0);
 }
-// deallocate the lists for the next call
 
 void	cleanlists(t_list **list, t_list *clean_node, char *buf)
 {
